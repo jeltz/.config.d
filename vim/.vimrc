@@ -177,3 +177,15 @@ autocmd BufWritePre * :%s/\s\+$//e | :%s/\n\+\%$//e | :0s/\%^\n\+//e
 if windows
   set backspace=indent,eol,start
 endif
+
+"When on Windows, assume the file uses CRLF when end-of-lines are mixed
+"in order to avoid accidentally saving files with mixed line endings.
+"See http://vim.wikia.com/wiki/Automatically_reload_files_with_mixed_line-endings_in_DOS_fileformat
+"See http://vim.wikia.com/wiki/File_format
+if windows
+  autocmd BufReadPost * nested
+    \ if !exists('b:reload_dos') && !&binary && &ff=='unix' && (0 < search('\r$', 'nc')) |
+    \   let b:reload_dos = 1 |
+    \   e ++ff=dos |
+    \ endif
+endif
