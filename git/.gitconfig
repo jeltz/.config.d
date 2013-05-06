@@ -1,6 +1,6 @@
 [user]
 	name = Johan Sageryd
-	email = j@1616.se
+	email = johan.sageryd@redbet.com
 [core]
 	excludesfile = ~/.config.d/git/.gitexclude
 	editor = vim
@@ -23,11 +23,6 @@
 	prompt = false
 [color]
 	ui = auto
-[sendemail]
-	smtpserver = smtp.googlemail.com
-	smtpserverport = 465
-	smtpencryption = ssl
-	smtpuser = j@1616.se
 [push]
 	default = simple
 [rebase]
