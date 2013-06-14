@@ -4,5 +4,10 @@ deployrequest() {
     echo 'Not a git repo.'
     return 1
   fi
-  open "mailto:Redbet IT Support <it-support@redbet.com>?Subject=Deploy request [no special] $(git rev-parse --abbrev-ref HEAD)&Body=$(git log --reverse master.. --format='- %s')"
+  branch_name=$(git rev-parse --abbrev-ref HEAD)
+  commit_log=$(git log --reverse master.. --format='- %s')
+  redmine_refs=$(git log master.. --format='%b' | grep refs | sort -u | sed 's/refs #//')
+  redmine_urls=$(for ref in $redmine_refs; do echo "https://project.redbet.com/issues/$ref"; done)
+  body=$(echo -e "$commit_log\n\n$redmine_urls")
+  open "mailto:Redbet IT Support <it-support@redbet.com>?Subject=Deploy request [no special] $branch_name&Body=$body"
 }
