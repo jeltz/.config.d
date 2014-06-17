@@ -4,6 +4,7 @@ deployrequest() {
     echo 'Not a git repo.'
     return 1
   fi
+  type -t gnoref > /dev/null && gnoref && return 1
   unset special
   while [ -z "$special" ]; do
     read -p 'Special [y/n]? ' special_answer
