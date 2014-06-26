@@ -17,6 +17,7 @@ deployrequest() {
   branch_name=$(git rev-parse --abbrev-ref HEAD)
   commit_log=$(git log --reverse master.. --format='%h %s')
   commit_count=$(echo "$commit_log" | wc -l)
+  shortstat=$(git diff --shortstat master... | sed 's/^ *//')
   redmine_refs=$(git log master.. --format='%b' | grep refs | sort -u | sed 's/refs #//')
   redmine_urls=''
   unique_refs=0
@@ -29,6 +30,6 @@ deployrequest() {
   else
     deploy_instructions=''
   fi
-  body=$(echo -e "# Branch\n$branch_name\n\n$deploy_instructions# Commit$([ $commit_count -gt 1 ] && echo 's')\n$commit_log\n\n# Referenced issue$([ $unique_refs -gt 1 ] && echo 's')\n$redmine_urls" | tr -s '&=?' '_')
+  body=$(echo -e "# Branch\n$branch_name\n\n$deploy_instructions# Commit$([ $commit_count -gt 1 ] && echo 's')\n$commit_log\n\n# Shortstat\n$shortstat\n\n# Referenced issue$([ $unique_refs -gt 1 ] && echo 's')\n$redmine_urls" | tr -s '&=?' '_')
   open "mailto:Redbet IT Support <it-support@redbet.com>?Subject=Deploy request [$special] $branch_name&Body=$body"
 }
