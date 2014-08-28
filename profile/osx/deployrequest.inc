@@ -15,10 +15,10 @@ deployrequest() {
     esac
   done
   branch_name=$(git rev-parse --abbrev-ref HEAD)
-  commit_log=$(git log --reverse master.. --format='%h %s')
+  commit_log=$(git log --reverse origin/master.. --format='%h %s')
   commit_count=$(echo "$commit_log" | wc -l)
-  shortstat=$(git diff --shortstat master... | sed 's/^ *//')
-  redmine_refs=$(git log master.. --format='%b' | grep refs | sort -u | sed 's/refs #//')
+  shortstat=$(git diff --shortstat origin/master... | sed 's/^ *//')
+  redmine_refs=$(git log origin/master.. --format='%b' | grep refs | sort -u | sed 's/refs #//')
   redmine_urls=''
   unique_refs=0
   for ref in $redmine_refs; do
