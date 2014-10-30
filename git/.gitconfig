@@ -1,6 +1,6 @@
 [user]
 	name = Johan Sageryd
-	email = johan.sageryd@redbet.com
+	email = johan.sageryd@bonniergaming.com
 [core]
 	excludesfile = ~/.config.d/git/.gitexclude
 	editor = vim
