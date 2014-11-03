@@ -32,4 +32,4 @@ else
   deploy_instructions=''
 fi
 body=$(echo -e "# Branch\n$branch_name\n\n$deploy_instructions# Commit$([ $commit_count -gt 1 ] && echo 's')\n$commit_log\n\n# Shortstat\n$shortstat\n\n# Referenced issue$([ $unique_refs -gt 1 ] && echo 's')\n$redmine_urls" | tr -s '&=?' '_')
-open "mailto:Redbet IT Support <it-support@redbet.com>?Subject=Deploy request [$special] $branch_name&Body=$body"
+open "mailto:Bonnier Gaming IT Support <it-support@bonniergaming.com>?Subject=Deploy request [$special] $branch_name&Body=$body"
