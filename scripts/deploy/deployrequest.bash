@@ -23,7 +23,7 @@ redmine_refs=$(git log origin/master.. --format='%b' | grep refs | sort -u | sed
 redmine_urls=''
 unique_refs=0
 for ref in $redmine_refs; do
-  redmine_urls+="https://project.redbet.com/issues/$ref\n"
+  redmine_urls+="https://project.bonniergaming.com/issues/$ref\n"
   let unique_refs+=1
 done
 if [ "$special" = 'SPECIAL' ]; then
